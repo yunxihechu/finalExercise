@@ -3,5 +3,4 @@
 int main() {
     std::cout << "jjj i love you" << std::endl;
     return 0;
-    //fuck you?
 }
