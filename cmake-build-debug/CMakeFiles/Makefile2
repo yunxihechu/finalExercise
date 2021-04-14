@@ -53,19 +53,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "D:\ProgramFiles\JetBrains\CLion 2021.1\bin\cmake\win\bin\cmake.exe"
+CMAKE_COMMAND = "E:\ProgramFiles\JetBrains\CLion 2021.1\bin\cmake\win\bin\cmake.exe"
 
 # The command to remove a file.
-RM = "D:\ProgramFiles\JetBrains\CLion 2021.1\bin\cmake\win\bin\cmake.exe" -E rm -f
+RM = "E:\ProgramFiles\JetBrains\CLion 2021.1\bin\cmake\win\bin\cmake.exe" -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = D:\Projects\finalExercise
+CMAKE_SOURCE_DIR = F:\Projects\CLion\finalExercise
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = D:\Projects\finalExercise\cmake-build-debug
+CMAKE_BINARY_DIR = F:\Projects\CLion\finalExercise\cmake-build-debug
 
 #=============================================================================
 # Directory level rules for the build root directory
@@ -92,14 +92,14 @@ clean: CMakeFiles/finalExercise.dir/clean
 CMakeFiles/finalExercise.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\finalExercise.dir\build.make CMakeFiles/finalExercise.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\finalExercise.dir\build.make CMakeFiles/finalExercise.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=D:\Projects\finalExercise\cmake-build-debug\CMakeFiles --progress-num=1,2 "Built target finalExercise"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=F:\Projects\CLion\finalExercise\cmake-build-debug\CMakeFiles --progress-num=1,2 "Built target finalExercise"
 .PHONY : CMakeFiles/finalExercise.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/finalExercise.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start D:\Projects\finalExercise\cmake-build-debug\CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start F:\Projects\CLion\finalExercise\cmake-build-debug\CMakeFiles 2
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/finalExercise.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start D:\Projects\finalExercise\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start F:\Projects\CLion\finalExercise\cmake-build-debug\CMakeFiles 0
 .PHONY : CMakeFiles/finalExercise.dir/rule
 
 # Convenience name for target.
