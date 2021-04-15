@@ -24,7 +24,7 @@ matrix::matrix(int row, int col, double d) {
     init();
     for(int i = 0; i < _row; i++){
         for(int j = 0; j < _col; j++){
-            _elem[i][j] = 0;
+            _elem[i][j] = d;
         }
     }
 }
@@ -99,11 +99,11 @@ std::istream &operator>>(std::istream& is, matrix& s) {
     return is;
 }
 
-int matrix::queryRow() const {
+int matrix::row() const {
     return _row;
 }
 
-int matrix::queryCol() const {
+int matrix::col() const {
     return _col;
 }
 
@@ -261,3 +261,59 @@ matrix matrix::operator/(double r) const {
 matrix &matrix::operator/=(const matrix &s) {//TODO
     return *this;
 }
+
+matrix &matrix::operator/=(double r) {
+    traverse(r ,divide);
+    return *this;
+}
+
+matrix matrix::operator%(const matrix &s) const {
+    matrix ans(_row, _col);
+    traverse(ans ,s ,divide);
+    return ans;
+}
+
+matrix &matrix::operator%=(const matrix &s) {
+    traverse(s ,divide);
+    return *this;
+}
+
+matrix matrix::operator&(const matrix &s) const {
+    matrix ans(_row, _col);
+    traverse(ans ,s ,multi);
+    return ans;
+}
+
+matrix &matrix::operator&=(const matrix &s) {
+    traverse(s ,multi);
+    return *this;
+}
+
+matrix matrix::operator^(double r) const {
+    matrix ans = *this;
+    for (int i = 0; i < r; i++){
+        ans = ans * ans;
+    }
+    return ans;
+}
+
+matrix &matrix::operator^=(double r) {
+    matrix ans = *this;
+    for (int i = 0; i < r; i++){
+        ans = ans * ans;
+    }
+    *this = ans;
+    return *this;
+}
+
+matrix matrix::operator|(double r) const {
+    matrix ans(_row, _col);
+    traverse(ans ,r ,pow);
+    return ans;
+}
+
+matrix &matrix::operator|=(double r) {
+    traverse(r ,pow);
+    return *this;
+}
+
