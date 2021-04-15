@@ -83,6 +83,12 @@
 		<Unit filename="D:/Projects/finalExercise/main.cpp">
 			<Option target="finalExercise"/>
 		</Unit>
+		<Unit filename="D:/Projects/finalExercise/matrix.cpp">
+			<Option target="finalExercise"/>
+		</Unit>
+		<Unit filename="D:/Projects/finalExercise/matrix.h">
+			<Option target="finalExercise"/>
+		</Unit>
 		<Unit filename="D:/Projects/finalExercise/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>

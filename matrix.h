@@ -5,16 +5,23 @@ class matrix
 {
 public:
     double **_elem;
-    int _row;
-    int _col;
+    int _row = 0;
+    int _col = 0;
     //初始化
     void init();
+    void remove();
 public:
     //构造函数
     matrix(int row, int col, double d = 0);//声明一个初始值为v的矩阵
 
     //析构函数
-    ~matrix();//析构函数应当是虚函数，
+    ~matrix();
+
+    //遍历工具, 这些操作均默认矩阵规模相等
+    void traverse(const matrix& s, double (*func)(double ,double));//for *=, /=, += ...
+    void traverse(double r, double (*func)(double ,double)); //for *=, /=, += ...
+    void traverse(matrix& ans, const matrix& s, double (*func)(double ,double )) const; //for ans = this + s ...
+    void traverse(matrix& ans, double r, double (*func)(double ,double)) const; //for ans = this + s ...
 
     //可写接口
     matrix& operator=(const matrix& s);//矩阵整体复制
@@ -36,37 +43,40 @@ public:
     static matrix T(const matrix & s);//矩阵转置的实现,且不改变矩阵
 
     //运算
-
     matrix operator+(const matrix& s) const;// A = this + s, 矩阵对应元素相加
-    matrix operator+(const double r) const; // A = this + r, 矩阵每个元素加上标量
+    matrix operator+(double r) const; // A = this + r, 矩阵每个元素加上标量
     matrix& operator+=(const matrix& s);    // this += s   , 矩阵对应元素相加
-    matrix& operator+=(const double r);     // this += r   , 矩阵每个元素加上标量
+    matrix& operator+=(double r);     // this += r   , 矩阵每个元素加上标量
 
     matrix operator-(const matrix& s) const;// A = this - s, 矩阵对应元素相减
-    matrix operator-(const double r) const; // A = this - r, 矩阵每个元素减去标量
+    matrix operator-(double r) const; // A = this - r, 矩阵每个元素减去标量
     matrix& operator-=(const matrix& s);    // this -= s   , 矩阵对应元素相减
-    matrix& operator-=(const double r);     // this -= r   , 矩阵每个元素减去标量
+    matrix& operator-=(double r);     // this -= r   , 矩阵每个元素减去标量
 
     matrix operator*(const matrix& s) const;// A = this * s, 矩阵乘法
-    matrix operator*(const double r) const; // A = this * r, 矩阵每个元素乘以标量
-    matrix& operator*=(const matrix& s);    // this *= s   , 矩阵对应元素相减
-    matrix& operator*=(const double r);     // this *= r   , 矩阵每个元素减去标量
+    matrix operator*(double r) const; // A = this * r, 矩阵每个元素乘以标量
+    matrix& operator*=(const matrix& s);    // this *= s   , 矩阵乘法
+    matrix& operator*=(double r);     // this *= r   , 矩阵每个元素乘以标量
 
-    matrix operator/(const matrix& s) const;// A = this / s, 矩阵对应元素相减
-    matrix operator/(const double r) const; // A = this / r, 矩阵对应元素相减
-    matrix& operator/=(const matrix& s);    // this /= s   , 矩阵对应元素相减
-    matrix& operator/=(const double r);     // this /= r   , 矩阵每个元素减去标量
+    matrix operator/(const matrix& s) const;// A = this / s = this * inv(s)
+    matrix operator/(double r) const; // A = this / r, 矩阵每个元素除以标量
+    matrix& operator/=(const matrix& s);    // this /= s  => this = this * inv(s)
+    matrix& operator/=(double r);     // this /= r   , 矩阵每个元素除以标量
 
     matrix operator%(const matrix& s) const;// A = this % s, 矩阵对应元素相减
-    matrix operator%(const double r) const; // A = this % r, 矩阵对应元素相减
+    matrix operator%(double r) const; // A = this % r, 矩阵对应元素相减
     matrix& operator%=(const matrix& s);    // this %= s   , 矩阵对应元素相减
-    matrix& operator%=(const double r);     // this %= r   , 矩阵对应元素相减
+    matrix& operator%=(double r);     // this %= r   , 矩阵对应元素相减
 
     matrix operator^(const double r) const; // A = this ^ s, 矩阵对应元素相减
     matrix& operator^=(const double r);     // this ^= r   , 矩阵对应元素相减
 
 };
-
+extern double add(double ,double );
+extern double minus(double ,double );
+extern double multi(double ,double );
+extern double divide(double ,double );
+//根据不要重复的原则，下面的删掉
 extern matrix* ones(int row, int col);
 extern matrix* zeros(int row, int col);
 #endif //FINALWORK_MATRIX_H

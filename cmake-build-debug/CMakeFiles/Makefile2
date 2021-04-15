@@ -92,12 +92,12 @@ clean: CMakeFiles/finalExercise.dir/clean
 CMakeFiles/finalExercise.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\finalExercise.dir\build.make CMakeFiles/finalExercise.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\finalExercise.dir\build.make CMakeFiles/finalExercise.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=D:\Projects\finalExercise\cmake-build-debug\CMakeFiles --progress-num=1,2 "Built target finalExercise"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=D:\Projects\finalExercise\cmake-build-debug\CMakeFiles --progress-num=1,2,3 "Built target finalExercise"
 .PHONY : CMakeFiles/finalExercise.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/finalExercise.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start D:\Projects\finalExercise\cmake-build-debug\CMakeFiles 2
+	$(CMAKE_COMMAND) -E cmake_progress_start D:\Projects\finalExercise\cmake-build-debug\CMakeFiles 3
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/finalExercise.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start D:\Projects\finalExercise\cmake-build-debug\CMakeFiles 0
 .PHONY : CMakeFiles/finalExercise.dir/rule
