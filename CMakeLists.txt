@@ -3,4 +3,4 @@ project(finalExercise)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(finalExercise main.cpp)
+add_executable(finalExercise main.cpp matrix.cpp matrix.h calculus.h calculus.cpp)
