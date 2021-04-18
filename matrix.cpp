@@ -156,7 +156,7 @@ double add(double x, double y) {
     return (x+y);
 }
 
-double minus(double x, double y) {
+double func_minus(double x, double y) {
     return (x-y);
 }
 
@@ -190,20 +190,20 @@ matrix &matrix::operator+=(double r) {
 
 matrix matrix::operator-(const matrix &s) const {
     matrix ans(_row, _col);
-    traverse(ans ,s ,minus);
+    traverse(ans, s, func_minus);
     return ans;
 }
 matrix matrix::operator-(double r) const {
     matrix ans(_row, _col);
-    traverse(ans ,r ,minus);
+    traverse(ans, r, func_minus);
     return ans;
 }
 matrix &matrix::operator-=(const matrix &s) {
-    traverse(s ,minus);
+    traverse(s, func_minus);
     return *this;
 }
 matrix &matrix::operator-=(double r) {
-    traverse(r ,minus);
+    traverse(r, func_minus);
     return *this;
 }
 
@@ -316,4 +316,3 @@ matrix &matrix::operator|=(double r) {
     traverse(r ,pow);
     return *this;
 }
-

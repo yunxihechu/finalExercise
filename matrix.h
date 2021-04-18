@@ -77,7 +77,7 @@ public:
 
 };
 extern double add(double ,double );
-extern double minus(double ,double );
+extern double func_minus(double , double );
 extern double multi(double ,double );
 extern double divide(double ,double );
 #endif //FINALWORK_MATRIX_H
