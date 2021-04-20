@@ -23,7 +23,7 @@ void calculus::getInfo() {
 }
 
 void calculus::translate() {
-    int i = 0,j = 0;
+    /*int i = 0,j = 0;
     int count = 0;//括号匹配
     unsigned int l = inputExp.length();
     if(matchOp(inputExp[0])) abort();
@@ -85,7 +85,7 @@ void calculus::translate() {
                     st.push(to_string(ch));
             }
         }
-    }
+    }*/
     return;
 }
 

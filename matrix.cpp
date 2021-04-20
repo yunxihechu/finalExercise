@@ -124,8 +124,46 @@ matrix matrix::Solve(const matrix &A, const matrix &b) {
     return inv(A)*b;
 }
 
-matrix matrix::inv(const matrix &s) {//TODO
-    return matrix(0, 0);
+matrix matrix::inv(const matrix &s) {
+    //增广矩阵法
+    if(s._col!=s._row){
+        cout<<"只有方阵能求逆矩阵"<<endl;
+        abort();
+    }
+    int n = s._col;
+    int k = 0;
+    double factor=0;
+    matrix A = s;
+    matrix B = eye(n);
+    for(int i = 0; i < n; i++){//row, mainElem col
+        if(A._elem[i][i]==0){
+            k = A.findNotzero(i);
+            if(k==-1){
+                cout<<"Not Full Rank"<<endl;abort();
+            }
+            factor = 1/(A._elem[k][i]);
+            A.rowAdd(i,k,factor);B.rowAdd(i,k,factor);
+        }
+        else if(A._elem[i][i]!=1){
+            factor = A._elem[i][i];
+            A.rowDivide(i,factor);B.rowDivide(i,factor);
+        }
+        //主元已置1
+        for(int j = i + 1; j < n; j++){//row
+            if(A._elem[j][i]==0) continue;
+            factor = -A._elem[j][i];
+            A.rowAdd(j,i,factor);B.rowAdd(j,i,factor);
+        }
+    }
+    //现在增广矩阵A|B中, A已经变为上三角矩阵。
+    for(int i = n-1; i >=0 ; i--){//col,mainElem row
+        for(int j = i-1; j >=0; j--) {//row
+            if(A._elem[j][i]==0) continue;
+            factor = -A._elem[j][i];
+            A.rowAdd(j,i,factor);B.rowAdd(j,i,factor);
+        }
+    }
+    return B;
 }
 
 matrix matrix::eye(int row) {
@@ -258,7 +296,8 @@ matrix matrix::operator/(double r) const {
     return ans;
 }
 
-matrix &matrix::operator/=(const matrix &s) {//TODO
+matrix &matrix::operator/=(const matrix &s) {
+    *this = (*this) * inv(s);
     return *this;
 }
 
@@ -315,4 +354,27 @@ matrix matrix::operator|(double r) const {
 matrix &matrix::operator|=(double r) {
     traverse(r ,pow);
     return *this;
+}
+
+void matrix::rowAdd(int ansRow, int opRow, double factor) {
+    for(int i = 0; i < _col; i++){
+        _elem[ansRow][i] += factor * _elem[opRow][i];
+    }
+}
+
+void matrix::rowDivide(int ansRow, double factor){
+    for(int i = 0; i < _col; i++){
+        _elem[ansRow][i] /= factor;
+    }
+}
+
+int matrix::findNotzero(int col) {
+    for(int row = col + 1; row < _row; row++){
+        if(_elem[row][col]!=0) return row;
+    }
+    return -1;
+}
+
+matrix::matrix(int row, int col, const double *v) {
+
 }

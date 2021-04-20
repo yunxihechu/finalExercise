@@ -13,7 +13,7 @@ private:
 public:
     //构造函数
     matrix(int row, int col, double d = 0);//声明一个初始值为v的矩阵
-
+    matrix(int row, int col, double const* v);
     //析构函数
     ~matrix();
 
@@ -37,12 +37,15 @@ public:
 
     //静态函数
     static matrix Solve(const matrix& A, const matrix& b);//求解线性方程组Ax=b
-    static matrix inv(const matrix& s);//求矩阵的逆矩阵
+    static matrix inv(const matrix &s);//求矩阵的逆矩阵
     static matrix eye(int row);//制造一个单位矩阵
     static double det(const matrix& s);//求矩阵的行列式
     static matrix T(const matrix & s);//矩阵转置的实现,且不改变矩阵
 
     //运算
+    int findNotzero(int col);
+    void rowAdd(int ansRow,int opRow, double factor);
+    void rowDivide(int ansRow, double factor);
     matrix operator+(const matrix& s) const;// A = this + s, 矩阵对应元素相加
     matrix operator+(double r) const;       // A = this + r, 矩阵每个元素加上标量
     matrix& operator+=(const matrix& s);    // this += s   , 矩阵对应元素相加
@@ -80,4 +83,9 @@ extern double add(double ,double );
 extern double func_minus(double , double );
 extern double multi(double ,double );
 extern double divide(double ,double );
+
+class arrange{
+public:
+    //TODO
+};
 #endif //FINALWORK_MATRIX_H
