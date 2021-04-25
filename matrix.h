@@ -12,6 +12,7 @@ private:
     void remove();
 public:
     //构造函数
+    matrix();
     matrix(int row, int col, double d = 0);//声明一个初始值为v的矩阵
     matrix(int row, int col, double const* v);
     //析构函数

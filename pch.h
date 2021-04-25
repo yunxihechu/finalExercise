@@ -7,5 +7,8 @@
 #include <vector>
 #include <set>
 #include <stack>
+#include <map>
+#include <string>
+#include <sstream>
 using namespace std;
 #endif //FINALWORK_PCH_H

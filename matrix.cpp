@@ -1,7 +1,3 @@
-//
-// Created by 95247 on 2021-04-13.
-//
-
 #include "matrix.h"
 
 void matrix::init() {
@@ -16,6 +12,16 @@ void matrix::remove() {
         delete[] _elem[i];
     }
     delete[] _elem;
+}
+matrix::matrix() {
+    cout << "To generate a matrix, you need to input row & col:"<<endl;
+    cin>> _row >> _col;
+    init();
+    for(int i = 0; i < _row; i++){
+        for(int j = 0; j < _col; j++){
+            _elem[i][j] = 0;
+        }
+    }
 }
 
 matrix::matrix(int row, int col, double d) {
@@ -108,12 +114,16 @@ int matrix::col() const {
 }
 
 void matrix::showMatrix() const {
+    cout<<"[";
     for(int i = 0; i < _row; i++){
         for(int j = 0; j < _col; j++){
-            std::cout << _elem[i][j] << " ";
+            cout << _elem[i][j] << " ";
         }
-        std::cout << std::endl;
+        if(i!= _row-1){
+            cout << ";";
+        }
     }
+    cout<<"]"<<endl;
 }
 
 double matrix::cell(int i, int j) const {
@@ -378,3 +388,4 @@ int matrix::findNotzero(int col) {
 matrix::matrix(int row, int col, const double *v) {
 
 }
+
