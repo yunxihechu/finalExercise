@@ -35,6 +35,17 @@ matrix::matrix(int row, int col, double d) {
     }
 }
 
+matrix::matrix(int row, int col, const double *v) {
+    _row = row;
+    _col = col;
+    init();
+    for(int i = 0; i < _row; i++){
+        for(int j = 0; j < _col; j++){
+            _elem[i][j] = *(v + i*_col + j);
+        }
+    }
+}
+
 matrix::~matrix() {
     remove();
 }
@@ -147,7 +158,7 @@ matrix matrix::inv(const matrix &s) {
     matrix B = eye(n);
     for(int i = 0; i < n; i++){//row, mainElem col
         if(A._elem[i][i]==0){
-            k = A.findNotzero(i);
+            k = A.notZero(i);
             if(k==-1){
                 cout<<"Not Full Rank"<<endl;abort();
             }
@@ -186,7 +197,18 @@ matrix matrix::eye(int row) {
     return ans;
 }
 
-double matrix::det(const matrix &s) {//TODO
+double matrix::det(const matrix &s) {
+    if(s._col!=s._row){
+        cout<<"非方阵!"<<endl;
+        abort();
+    }
+    int n = s.row();
+    int factorial = 1;
+    for(int i = n;i > 0;i--){
+        factorial = factorial * i;
+    }
+    int** ar = arrange(n);
+
     return 0;
 }
 
@@ -378,14 +400,36 @@ void matrix::rowDivide(int ansRow, double factor){
     }
 }
 
-int matrix::findNotzero(int col) {
+int matrix::notZero(int col) {
     for(int row = col + 1; row < _row; row++){
         if(_elem[row][col]!=0) return row;
     }
     return -1;
 }
 
-matrix::matrix(int row, int col, const double *v) {
+int** arrange(int r) {
+    int n = r;
+    int factorial = 1;
+    for(int i = n;i > 0;i--){
+        factorial = factorial * i;
+    }
 
+    int *tmp = new int[n];
+    for(int i = 0; i < n; i++){
+        tmp[i] = i + 1;
+    }
+    int** ans = new int*[factorial];
+    for(int i = 0; i < factorial; i++){
+        ans[i] = new int[n];
+    }
+
+    int id = 0;
+    do{
+        for(int i = 0; i < n ;i++){
+            ans[id][i] = tmp[i];
+        }
+        id++;
+    }while(next_permutation(tmp,tmp+n));
+    return ans;
 }
 

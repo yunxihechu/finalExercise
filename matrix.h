@@ -44,7 +44,7 @@ public:
     static matrix T(const matrix & s);//矩阵转置的实现,且不改变矩阵
 
     //运算
-    int findNotzero(int col);
+    int notZero(int col);
     void rowAdd(int ansRow,int opRow, double factor);
     void rowDivide(int ansRow, double factor);
     matrix operator+(const matrix& s) const;// A = this + s, 矩阵对应元素相加
@@ -85,8 +85,6 @@ extern double func_minus(double , double );
 extern double multi(double ,double );
 extern double divide(double ,double );
 
-class arrange{
-public:
-    //TODO
-};
+//辅助矩阵计算行列式
+extern int** arrange(int r);
 #endif //FINALWORK_MATRIX_H
